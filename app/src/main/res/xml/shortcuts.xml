@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Швидке створення задачі -->
+    <shortcut
+        android:shortcutId="create_task"
+        android:enabled="true"
+        android:icon="@drawable/ic_add_task"
+        android:shortcutShortLabel="@string/shortcut_create_task_short"
+        android:shortcutLongLabel="@string/shortcut_create_task_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.example.doshka"
+            android:targetClass="com.example.doshka.MainActivity"
+            android:data="doshka://task/create" />
+        <categories android:name="android.shortcut.conversation" />
+    </shortcut>
+
+    <!-- Перегляд дашборду -->
+    <shortcut
+        android:shortcutId="dashboard"
+        android:enabled="true"
+        android:icon="@drawable/ic_dashboard"
+        android:shortcutShortLabel="@string/shortcut_dashboard_short"
+        android:shortcutLongLabel="@string/shortcut_dashboard_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.example.doshka"
+            android:targetClass="com.example.doshka.MainActivity"
+            android:data="doshka://dashboard" />
+        <categories android:name="android.shortcut.conversation" />
+    </shortcut>
+
+    <!-- Мої задачі -->
+    <shortcut
+        android:shortcutId="my_tasks"
+        android:enabled="true"
+        android:icon="@drawable/ic_my_tasks"
+        android:shortcutShortLabel="@string/shortcut_my_tasks_short"
+        android:shortcutLongLabel="@string/shortcut_my_tasks_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.example.doshka"
+            android:targetClass="com.example.doshka.MainActivity"
+            android:data="doshka://tasks/mine" />
+        <categories android:name="android.shortcut.conversation" />
+    </shortcut>
+
+</shortcuts>

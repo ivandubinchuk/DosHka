@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Дозволяє шарити файли з кеш-директорії -->
+    <cache-path
+        name="cache"
+        path="." />
+
+    <!-- Дозволяє шарити файли з external cache -->
+    <external-cache-path
+        name="external_cache"
+        path="." />
+
+    <!-- Дозволяє шарити файли з internal files -->
+    <files-path
+        name="files"
+        path="." />
+</paths>

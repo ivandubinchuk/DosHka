@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Назва додатку -->
+    <string name="app_name">DoshKa</string>
+
+    <!-- Слоган -->
+    <string name="slogan">Постав. Контролюй. Закрий.</string>
+
+    <!-- Аутентифікація -->
+    <string name="login">Вхід</string>
+    <string name="register">Реєстрація</string>
+    <string name="logout">Вийти</string>
+    <string name="email">Email</string>
+    <string name="password">Пароль</string>
+    <string name="confirm_password">Підтвердження пароля</string>
+    <string name="full_name">Повне ім\'я</string>
+    <string name="enter_email">Введіть email</string>
+    <string name="enter_password">Введіть пароль</string>
+    <string name="biometric_login">Вхід по відбитку</string>
+    <string name="no_account">Немає акаунту?</string>
+    <string name="have_account">Вже є акаунт?</string>
+
+    <!-- Ролі -->
+    <string name="role_manager">Менеджер</string>
+    <string name="role_executor">Виконавець</string>
+    <string name="role_manager_desc">Створюю задачі, керую командою</string>
+    <string name="role_executor_desc">Виконую задачі, звітую</string>
+
+    <!-- Канбан дошка -->
+    <string name="board">Дошка</string>
+    <string name="columns">Колонки</string>
+    <string name="add_column">Додати колонку</string>
+    <string name="add_task">Додати задачу</string>
+    <string name="new_task">Нова задача</string>
+    <string name="task_title">Назва задачі</string>
+    <string name="task_description">Опис</string>
+    <string name="drag_here">Перетягніть сюди</string>
+
+    <!-- Пріоритети -->
+    <string name="priority">Пріоритет</string>
+    <string name="priority_critical">Критичний</string>
+    <string name="priority_high">Високий</string>
+    <string name="priority_medium">Середній</string>
+    <string name="priority_low">Низький</string>
+
+    <!-- Статуси -->
+    <string name="status_backlog">Очікує</string>
+    <string name="status_todo">До роботи</string>
+    <string name="status_in_progress">В роботі</string>
+    <string name="status_review">На перевірці</string>
+    <string name="status_done">Завершено</string>
+
+    <!-- Дедлайн -->
+    <string name="deadline">Дедлайн</string>
+    <string name="deadline_until">до %s</string>
+    <string name="overdue">Прострочено</string>
+    <string name="deadline_soon">Скоро дедлайн</string>
+
+    <!-- Виконавець -->
+    <string name="assignee">Виконавець</string>
+    <string name="unassigned">Не призначено</string>
+    <string name="assign_to_me">Взяти собі</string>
+
+    <!-- Дії -->
+    <string name="save">Зберегти</string>
+    <string name="cancel">Скасувати</string>
+    <string name="delete">Видалити</string>
+    <string name="edit">Редагувати</string>
+    <string name="create">Створити</string>
+    <string name="move">Перемістити</string>
+    <string name="sync">Синхронізувати</string>
+    <string name="refresh">Оновити</string>
+
+    <!-- Повідомлення -->
+    <string name="messages">Повідомлення</string>
+    <string name="send_message">Надіслати</string>
+    <string name="enter_message">Введіть повідомлення...</string>
+    <string name="voice_note">Голосова нотатка</string>
+
+    <!-- Вкладення -->
+    <string name="attachments">Вкладення</string>
+    <string name="add_attachment">Додати файл</string>
+
+    <!-- Теги та мітки -->
+    <string name="tags">Теги</string>
+    <string name="labels">Мітки</string>
+
+    <!-- Дашборд -->
+    <string name="dashboard">Дашборд</string>
+    <string name="total_tasks">Усього задач</string>
+    <string name="completed_tasks">Завершено</string>
+    <string name="in_progress_tasks">В роботі</string>
+    <string name="overdue_tasks">Прострочено</string>
+    <string name="completion_rate">Рівень виконання</string>
+    <string name="velocity">Швидкість команди</string>
+    <string name="cycle_time">Середній час виконання</string>
+
+    <!-- Команда -->
+    <string name="team">Команда</string>
+    <string name="team_members">Учасники команди</string>
+    <string name="invite_member">Запросити</string>
+    <string name="scan_qr">Сканувати QR</string>
+    <string name="generate_qr">Згенерувати QR</string>
+
+    <!-- Налаштування -->
+    <string name="settings">Налаштування</string>
+    <string name="profile">Профіль</string>
+    <string name="security">Безпека</string>
+    <string name="appearance">Оформлення</string>
+    <string name="notifications">Сповіщення</string>
+    <string name="dark_theme">Темна тема</string>
+    <string name="push_notifications">Push-сповіщення</string>
+    <string name="about">Про додаток</string>
+    <string name="version">Версія %s</string>
+
+    <!-- Офлайн режим -->
+    <string name="offline_mode">Офлайн режим</string>
+    <string name="offline_banner">OFFLINE MODE</string>
+    <string name="syncing">Синхронізація...</string>
+    <string name="sync_failed">Не вдалося синхронізувати</string>
+    <string name="working_offline">Працюємо в офлайн режимі</string>
+
+    <!-- Помилки -->
+    <string name="error">Помилка</string>
+    <string name="error_network">Проблема з мережею</string>
+    <string name="error_invalid_credentials">Невірний email або пароль</string>
+    <string name="error_email_required">Введіть email</string>
+    <string name="error_password_required">Введіть пароль</string>
+    <string name="error_password_short">Пароль має містити мінімум 6 символів</string>
+    <string name="error_passwords_mismatch">Паролі не співпадають</string>
+    <string name="error_name_required">Введіть ім\'я</string>
+    <string name="error_title_required">Введіть назву задачі</string>
+
+    <!-- Порожні стани -->
+    <string name="empty_board">Дошка порожня</string>
+    <string name="empty_board_message">Створіть першу колонку, щоб почати роботу</string>
+    <string name="empty_column">Колонка порожня</string>
+    <string name="empty_tasks">Немає задач</string>
+    <string name="all_done">Все виконано. Відпочивай.</string>
+    <string name="no_overdue">Прострочених задач немає</string>
+
+    <!-- Біометрія -->
+    <string name="biometric_prompt_title">Вхід у DoshKa</string>
+    <string name="biometric_prompt_subtitle">Використовуйте відбиток пальця для входу</string>
+    <string name="biometric_prompt_negative">Скасувати</string>
+    <string name="biometric_not_available">Біометрія недоступна</string>
+    <string name="biometric_error">Помилка біометрії</string>
+
+    <!-- Інше -->
+    <string name="loading">Завантаження...</string>
+    <string name="ok">OK</string>
+    <string name="yes">Так</string>
+    <string name="no">Ні</string>
+    <string name="back">Назад</string>
+    <string name="hours">год</string>
+    <string name="wip">WIP</string>
+
+    <!-- App Shortcuts -->
+    <string name="shortcut_create_task_short">Нова задача</string>
+    <string name="shortcut_create_task_long">Створити нову задачу</string>
+    <string name="shortcut_dashboard_short">Дашборд</string>
+    <string name="shortcut_dashboard_long">Переглянути статистику</string>
+    <string name="shortcut_my_tasks_short">Мої задачі</string>
+    <string name="shortcut_my_tasks_long">Переглянути мої задачі</string>
+</resources>

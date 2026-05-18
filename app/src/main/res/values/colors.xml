@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Брутальна кольорова палітра Industrial Neo-Brutalism -->
+
+    <!-- Основні кольори -->
+    <color name="brutal_orange">#FFFF5722</color>
+    <color name="brutal_orange_dark">#FFD84315</color>
+    <color name="brutal_amber">#FFFFB300</color>
+    <color name="brutal_red">#FFFF1744</color>
+    <color name="brutal_green">#FF00E676</color>
+
+    <!-- Фони -->
+    <color name="brutal_surface_light">#FFF5F0EB</color>
+    <color name="brutal_surface_dark">#FF1A1A1A</color>
+    <color name="brutal_card_light">#FFFFFFFF</color>
+    <color name="brutal_card_dark">#FF242424</color>
+
+    <!-- Текст -->
+    <color name="brutal_text_primary_light">#FF1A1A1A</color>
+    <color name="brutal_text_primary_dark">#FFF5F0EB</color>
+    <color name="brutal_text_secondary">#FF757575</color>
+
+    <!-- Пріоритети -->
+    <color name="priority_critical">#FFFF1744</color>
+    <color name="priority_high">#FFFF5722</color>
+    <color name="priority_medium">#FFFFB300</color>
+    <color name="priority_low">#FF9E9E9E</color>
+
+    <!-- Статуси -->
+    <color name="status_todo">#FF9E9E9E</color>
+    <color name="status_in_progress">#FFFFB300</color>
+    <color name="status_review">#FF2196F3</color>
+    <color name="status_done">#FF00E676</color>
+
+    <!-- Базові -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>
