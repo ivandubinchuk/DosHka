@@ -24,6 +24,7 @@ import com.example.doshka.ui.components.BrutalCard
 import com.example.doshka.ui.components.BrutalTextButton
 import com.example.doshka.ui.screens.auth.AuthViewModel
 import com.example.doshka.ui.theme.*
+import com.example.doshka.ui.components.AddExecutorDialog
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -35,6 +36,8 @@ fun SettingsScreen(
 ) {
     val uiState by authViewModel.uiState.collectAsStateWithLifecycle()
     val settingsState by settingsViewModel.uiState.collectAsStateWithLifecycle()
+    val showAddExecutorDialog: Boolean = false
+    val newExecutorEmail: String = ""
 
     Scaffold(
         topBar = {
@@ -270,6 +273,21 @@ fun SettingsScreen(
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                     }
+                    Spacer(modifier = Modifier.height(12.dp))
+
+                    Button(
+                        onClick = { settingsViewModel.showAddExecutorDialog() },
+                        colors = ButtonDefaults.buttonColors(containerColor = BrutalGreen),
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.PersonAdd,
+                            contentDescription = null,
+                            modifier = Modifier.size(18.dp)
+                        )
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Text("ДОДАТИ ВИКОНАВЦЯ")
+                    }
                 }
             }
 
@@ -279,6 +297,14 @@ fun SettingsScreen(
                     qrCodeBase64 = settingsState.qrCodeBase64!!,
                     expiresAt = settingsState.qrExpiresAt,
                     onDismiss = { settingsViewModel.dismissQRDialog() }
+                )
+            }
+            if (settingsState.showAddExecutorDialog) {
+                AddExecutorDialog(
+                    email = settingsState.newExecutorEmail,
+                    onEmailChange = { settingsViewModel.updateEmail(it) },
+                    onConfirm = { settingsViewModel.addExecutor() },
+                    onDismiss = { settingsViewModel.hideAddExecutorDialog() }
                 )
             }
 

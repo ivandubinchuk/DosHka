@@ -27,7 +27,9 @@ data class SettingsUiState(
     val isGeneratingQR: Boolean = false,
     val showQRDialog: Boolean = false,
     val qrCodeBase64: String? = null,
-    val qrExpiresAt: String? = null
+    val qrExpiresAt: String? = null,
+    val showAddExecutorDialog: Boolean = false,
+    val newExecutorEmail: String = ""
 )
 
 enum class ConnectionStatus {
@@ -231,13 +233,46 @@ class SettingsViewModel @Inject constructor(
         }
     }
 
+    fun showAddExecutorDialog() {
+        _uiState.update {
+            it.copy(showAddExecutorDialog = true)
+        }
+    }
+
+    fun hideAddExecutorDialog() {
+        _uiState.update {
+            it.copy(
+                showAddExecutorDialog = false,
+                newExecutorEmail = ""
+            )
+        }
+    }
+
+    fun updateEmail(email: String) {
+        _uiState.update {
+            it.copy(newExecutorEmail = email)
+        }
+    }
     fun setNotificationsEnabled(enabled: Boolean) {
         viewModelScope.launch {
             dataStoreManager.setNotificationsEnabled(enabled)
             _uiState.update { it.copy(notificationsEnabled = enabled) }
         }
     }
+    fun addExecutor() {
+        viewModelScope.launch {
+            try {
+                val email = _uiState.value.newExecutorEmail.trim()
+                if (email.isBlank()) return@launch
 
+                api.addExecutor(email)
+                hideAddExecutorDialog()
+
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
     fun generateInviteQR() {
         viewModelScope.launch {
             _uiState.update { it.copy(isGeneratingQR = true) }

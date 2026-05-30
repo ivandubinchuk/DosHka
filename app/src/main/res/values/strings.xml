@@ -155,6 +155,12 @@
     <string name="hours">год</string>
     <string name="wip">WIP</string>
 
+    <!-- Splash Screen -->
+    <string name="splash_subtitle">Розподіляй. Відстежуй. Досягай.</string>
+    <string name="column_todo_en">To Do</string>
+    <string name="column_in_progress_en">In Progress</string>
+    <string name="column_done_en">Done</string>
+
     <!-- App Shortcuts -->
     <string name="shortcut_create_task_short">Нова задача</string>
     <string name="shortcut_create_task_long">Створити нову задачу</string>

@@ -64,6 +64,7 @@ async def root():
     }
 
 
+
 @app.get("/health", tags=["Здоров'я"])
 async def health_check():
     """Перевірка стану сервера"""

@@ -157,6 +157,72 @@ async def get_team_members(
     members = result.scalars().all()
     return members
 
+@router.post("/join")
+async def join_team(
+        invite_code: str,
+        current_user: CurrentUser,
+        db: Annotated[AsyncSession, Depends(get_db)]
+):
+    """Приєднатися до команди по інвайт-коду"""
+
+    result = await db.execute(
+        select(Team).where(Team.invite_code == invite_code)
+    )
+    team = result.scalar_one_or_none()
+
+    if not team:
+        raise HTTPException(status_code=404, detail="Невірний код")
+
+    # додаємо користувача в команду
+    current_user.team_id = team.id
+
+    await db.commit()
+
+    return {
+        "status": "ok",
+        "team_id": team.id,
+        "team_name": team.name
+    }
+@router.post("/add-by-email")
+async def add_by_email(
+        email: str,
+        current_user: ManagerOnly,
+        db: Annotated[AsyncSession, Depends(get_db)]
+):
+    """Додати користувача в команду по email"""
+
+    # знайти користувача
+    result = await db.execute(
+        select(User).where(User.email == email)
+    )
+    user = result.scalar_one_or_none()
+
+    if not user:
+        raise HTTPException(
+            status_code=404,
+            detail="Користувача не знайдено"
+        )
+
+    # перевірка що менеджер має команду
+    if not current_user.team_id:
+        raise HTTPException(
+            status_code=400,
+            detail="У менеджера немає команди"
+        )
+
+    # перевірка чи вже в команді
+    if user.team_id == current_user.team_id:
+        return {"status": "already_in_team"}
+
+    # додаємо в команду
+    user.team_id = current_user.team_id
+
+    await db.commit()
+
+    return {
+        "status": "ok",
+        "message": f"{user.email} додано в команду"
+    }
 
 @router.post("/invite/qr", response_model=InviteQRResponse)
 async def generate_invite_qr(

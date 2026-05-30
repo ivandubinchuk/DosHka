@@ -26,17 +26,18 @@ object DateTimeUtils {
      */
     fun parseInstant(dateTimeStr: String): Instant {
         return try {
-            // Якщо вже є 'Z' або timezone — парсимо напряму
-            if (dateTimeStr.endsWith("Z") ||
-                dateTimeStr.contains("+") ||
-                (dateTimeStr.length > 10 && dateTimeStr.substring(10).contains("-"))) {
-                Instant.parse(dateTimeStr)
-            } else {
-                // Додаємо 'Z' (UTC timezone)
-                Instant.parse(dateTimeStr + "Z")
-            }
+            // Нормалізуємо формат
+            val normalized = dateTimeStr
+                .replace(" ", "T")
+                .let {
+                    if (it.endsWith("Z") || it.contains("+"))
+                        it
+                    else
+                        "${it}Z"
+                }
+
+            Instant.parse(normalized)
         } catch (e: Exception) {
-            // Fallback — поточний час
             Instant.now()
         }
     }

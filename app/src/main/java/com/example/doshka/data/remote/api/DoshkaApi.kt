@@ -34,6 +34,8 @@ interface DoshkaApi {
     suspend fun logout(): Response<Unit>
 
     // ==================== КОРИСТУВАЧІ ====================
+    @POST("/api/v1/teams/add-by-email")
+    suspend fun addExecutor(@Query("email") email: String)
 
     @GET("api/v1/users/me")
     suspend fun getCurrentUser(): Response<UserDto>
