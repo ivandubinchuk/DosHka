@@ -15,10 +15,12 @@ from ....core.database import get_db
 from ....core.deps import CurrentUser
 from ....models import Attachment, Task
 from ....schemas import AttachmentResponse
+from ....core.config import settings
 
 router = APIRouter(prefix="/attachments", tags=["Вкладення"])
 
-UPLOAD_DIR = "uploads"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+UPLOAD_DIR = os.path.join(BASE_DIR, "uploads")
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 
@@ -109,11 +111,13 @@ async def upload_attachment(
         file_name=file.filename,
         file_type=file_type,
         file_size=len(content),
-        url=f"/api/v1/attachments/download/{unique_filename}"
+        url = f"/api/v1/attachments/download/{unique_filename}"
     )
     db.add(attachment)
     await db.commit()
-
+    print("UPLOAD DIR:", UPLOAD_DIR)
+    print("SAVING FILE:", file_path)
+    print("FILE EXISTS AFTER WRITE:", os.path.exists(file_path))
     # Перезавантажуємо з uploader
     result = await db.execute(
         select(Attachment)
@@ -125,21 +129,26 @@ async def upload_attachment(
 
 @router.get("/download/{filename}")
 async def download_attachment(
-    filename: str,
-    current_user: CurrentUser,
-    db: Annotated[AsyncSession, Depends(get_db)]
+        filename: str,
+        current_user: CurrentUser,
+        db: Annotated[AsyncSession, Depends(get_db)]
 ):
-    """Завантажити файл"""
+    print("RAW filename:", filename)
+
+    filename = filename.split("/")[-1]
+
     file_path = os.path.join(UPLOAD_DIR, filename)
+
+    print("FINAL path:", file_path)
+    print("EXISTS:", os.path.exists(file_path))
 
     if not os.path.exists(file_path):
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
+            status_code=404,
             detail="Файл не знайдено"
         )
 
     return FileResponse(file_path, filename=filename)
-
 
 @router.delete("/{attachment_id}")
 async def delete_attachment(

@@ -707,31 +707,35 @@ private fun AttachmentItem(
     onDelete: () -> Unit
 ) {
     val context = LocalContext.current
-
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .background(MaterialTheme.colorScheme.surfaceVariant)
             .border(1.dp, MaterialTheme.colorScheme.outline)
             .clickable {
-                // Відкриваємо файл у браузері
                 try {
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(attachment.url))
-                    context.startActivity(intent)
+                    val url = attachment.url
+
+                    val intent = Intent(Intent.ACTION_VIEW).apply {
+                        setDataAndType(Uri.parse(url), "*/*")
+                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    }
+
+                    context.startActivity(Intent.createChooser(intent, "Відкрити файл"))
                 } catch (e: Exception) {
-                    // Ігноруємо помилку
+                    e.printStackTrace()
                 }
             }
             .padding(12.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        // Іконка типу файлу
+
         val icon = when {
-            attachment.fileType.startsWith("image/") -> Icons.Default.Image
-            attachment.fileType.startsWith("video/") -> Icons.Default.VideoFile
-            attachment.fileType.startsWith("audio/") -> Icons.Default.AudioFile
-            attachment.fileType == "application/pdf" -> Icons.Default.PictureAsPdf
-            else -> Icons.AutoMirrored.Filled.InsertDriveFile
+            attachment.fileType.startsWith("image") -> Icons.Default.Image
+            attachment.fileType.startsWith("video") -> Icons.Default.VideoFile
+            attachment.fileType.startsWith("audio") -> Icons.Default.AudioFile
+            attachment.fileType.contains("pdf") -> Icons.Default.PictureAsPdf
+            else -> Icons.Default.InsertDriveFile
         }
 
         Icon(
@@ -746,25 +750,17 @@ private fun AttachmentItem(
         Column(modifier = Modifier.weight(1f)) {
             Text(
                 text = attachment.fileName,
-                style = MaterialTheme.typography.bodyMedium,
-                fontWeight = FontWeight.Medium,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis
+                style = MaterialTheme.typography.bodyMedium
             )
+
             Text(
                 text = formatFileSize(attachment.fileSize),
-                style = MaterialTheme.typography.labelSmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
+                style = MaterialTheme.typography.labelSmall
             )
         }
 
-        // Кнопка видалення
         IconButton(onClick = onDelete) {
-            Icon(
-                imageVector = Icons.Default.Delete,
-                contentDescription = "Видалити",
-                tint = BrutalRed
-            )
+            Icon(Icons.Default.Delete, contentDescription = null, tint = BrutalRed)
         }
     }
 }
